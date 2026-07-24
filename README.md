@@ -139,12 +139,18 @@ Any ticket scoring below **3** on any metric is flagged for further analysis.
 
 ## Supported ticket categories
 
-| Category     | Scope                                                        |
-| ------------ | ------------------------------------------------------------ |
-| **Access**   | Authentication, MFA, password resets, access rights          |
-| **Network**  | Connectivity, VPN, WiFi, proxy configuration                 |
-| **Hardware** | Physical device faults — printers, monitors, laptops         |
-| **Software** | Application install/errors, ERP/SAP, Microsoft Office        |
+The six categories are shared by the ticket datasets, the classifier, and the six
+sections of `SOP_IT_Helpdesk.md`, so a predicted category maps directly onto the
+SOP section that answers it.
+
+| Category     | SOP section | Scope                                                   |
+| ------------ | ----------- | ------------------------------------------------------- |
+| **Access**   | SOP-001     | Authentication, MFA, password resets, access rights     |
+| **Network**  | SOP-002     | Connectivity, VPN, WiFi, proxy configuration            |
+| **Hardware** | SOP-003     | Physical device faults: printers, monitors, laptops     |
+| **ERP**      | SOP-004     | SAP GUI errors, locked SAP accounts                     |
+| **Software** | SOP-005     | Email, Office 365, application licensing                |
+| **Other**    | SOP-006     | General services: room booking, ID card replacement     |
 
 ---
 
@@ -154,6 +160,9 @@ Any ticket scoring below **3** on any metric is flagged for further analysis.
   model.
 - ChromaDB persists to `./chroma_db`. Cell 2 drops and rebuilds the collection
   every time it runs.
+- `results.jsonl` and `results_evaluated.jsonl` in this repository were produced
+  by an earlier revision of the pipeline. Re-run Cells 2 and 7 through 11 to
+  regenerate them against the current code.
 - Answer quality depends heavily on how completely `SOP_IT_Helpdesk.md` covers
   the procedure being asked about.
 - Runtime for Cells 7 and 9 depends on how fast Ollama runs on your machine.
